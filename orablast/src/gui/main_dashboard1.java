@@ -431,6 +431,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 					   //Start DB worker threads.   
 						  
 					      bt1 = new blast_thread(array);
+					      bt1.start();
 					
 		
 						    //Progress bar while running blast

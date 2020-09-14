@@ -65,7 +65,10 @@ public class blast_thread extends Thread {
 	public blast_thread(String[] myArray) {
 		
 		this.myArray=myArray;
-			
+	}
+		
+		public void run() {
+		
 		
 		 	for (i=0; i < myArray.length; i++) {
 		 		
@@ -206,7 +209,6 @@ public class blast_thread extends Thread {
 					
 
 							String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());
-							//String file_name = ".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out";
 							
 							
 							fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
