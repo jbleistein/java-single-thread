@@ -59,7 +59,9 @@ public class blast_thread extends Thread {
 	static Connection c1;
 	static Connection c2;
 	public static PrintStream pw1;
-	volatile PrintStream stream;
+     PrintStream stream;
+	File src_dir;
+	File dest_dir;
 
 
 	public blast_thread(String[] myArray) {
@@ -206,6 +208,27 @@ public class blast_thread extends Thread {
 							tt.setAddRowNumbering(true); 
 							// sort by the first column 
 							tt.setSort(0); 
+							
+							
+							//Move any existing output files from output/ to archive/.
+							
+							 src_dir = new File(".."+File.separator+"output"+File.separator);
+							 dest_dir = new File(".."+File.separator+"archive"+File.separator);
+							
+							
+							//if (src_dir.length() > 0) {
+								
+								
+								File[] content = src_dir.listFiles();
+							
+								for (int i = 0; i < content.length;i++) {
+									
+									content[i].renameTo(dest_dir);
+									
+									
+								}
+								
+							//}
 					
 
 							String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());

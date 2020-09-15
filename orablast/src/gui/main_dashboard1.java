@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.EventQueue;
 import java.awt.FileDialog;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.AreaAveragingScaleFilter;
@@ -62,6 +63,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.table.*;
+import javax.swing.JSlider;
 
 
 public class main_dashboard1 extends Thread implements ActionListener {
@@ -71,6 +73,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	private JTextField textField;
 	public static JTable table_1;
 	public static DefaultTableModel model;
+	public static DefaultTableModel model_2;
 	JButton btnNewButton_2;
 	JButton btnNewButton;
 	JButton btnNewButton_1;
@@ -98,6 +101,8 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	JPopupMenu popupMenu;
     JMenuItem menuItemAdd;
     public static build_jtable bjt1;
+    private JTable table;
+ 
 
 	
 	public main_dashboard1() {
@@ -132,6 +137,11 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		tabbedPane.addTab("Blast", null, panel, null);
 		panel.setLayout(null);
 		
+
+		JPanel panel_4 = new JPanel();
+		tabbedPane.addTab("Tablespace", null, panel_4, null);
+		panel_4.setLayout(null);
+		
 		
 		btnNewButton = new JButton("Blast");
 		btnNewButton.setBounds(747, 353, 117, 29);
@@ -144,17 +154,84 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		textArea = new JTextArea();
 		textArea.setBounds(274, 22, 568, 319);
 		panel.add(textArea);
-
-		
- model = new DefaultTableModel();
-        
+				
+	   model = new DefaultTableModel();
+       model_2 = new DefaultTableModel();
+		        
 		model.addColumn("Host");
         model.addColumn("DB");   
         model.addColumn("Status");
+ 
+
+		
+		model_2 = new DefaultTableModel();
+        
+
+		
+		JSlider slider = new JSlider();
+		slider.setBounds(289, 187, 445, 29);
+		panel_4.add(slider);
+		
+		JScrollPane scrollPane_5 = new JScrollPane((Component) null);
+		scrollPane_5.setBounds(259, 242, 401, 126);
+		panel_4.add(scrollPane_5);
+		
+		JLabel lblNewLabel = new JLabel("Primary space:");
+		lblNewLabel.setBounds(259, 214, 132, 16);
+		panel_4.add(lblNewLabel);
+		
+		JScrollPane scrollPane_4 = new JScrollPane((Component) null);
+		scrollPane_4.setBounds(259, 391, 401, 126);
+		panel_4.add(scrollPane_4);
+		
+		JLabel lblStandbyFilesystems = new JLabel("Standby space:");
+		lblStandbyFilesystems.setBounds(259, 368, 132, 16);
+		panel_4.add(lblStandbyFilesystems);
+		
+		JLabel lblDatafileSize = new JLabel("Datafile size:");
+		lblDatafileSize.setBounds(215, 174, 132, 16);
+		panel_4.add(lblDatafileSize);
+		
+		JButton btnNewButton_3 = new JButton("Apply");
+		btnNewButton_3.setBounds(747, 488, 117, 29);
+		panel_4.add(btnNewButton_3);
+		
+		JLabel lblDatafiles = new JLabel("Datafiles:");
+		lblDatafiles.setBounds(215, 6, 132, 16);
+		panel_4.add(lblDatafiles);
+		
+
+		model_2.addColumn("Tablespace");
+		model_2.addColumn("Total");
+		model_2.addColumn("Used");
+		model_2.addColumn("Free");
+		
+
+		JTable table_2 = new JTable(model_2);
+		table_2.setBounds(6, 22, 133, 483);
+		panel_4.add(table_2);
+		
+		
+		JScrollPane scrollPane_2 = new JScrollPane((table_2));
+		scrollPane_2.setBounds(0, 307, 232, 210);
+		panel_4.add(scrollPane_2);
+		
+		table = new JTable();
+		table.setBounds(42, 240, 24, -25);
+		panel_4.add(table);	
+		
+
+		table_1 = new JTable(model);
+		table_1.setBounds(6, 22, 133, 483);
+		panel.add(table_1);
+		
+		
+	
 	 
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("DOD", null, panel_1, null);
+		panel_1.setLayout(null);
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
 		
 
@@ -166,17 +243,8 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("DG Gap", null, panel_3, null);
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
-		
-
-		JPanel panel_4 = new JPanel();
-		tabbedPane.addTab("Tablespace", null, panel_4, null);
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
-		
-
-		table_1 = new JTable(model);
-		table_1.setBounds(6, 22, 133, 483);
-		//table_1.setGridColor(Color.gray);
-		panel.add(table_1);
+	
 		
 
 		textField_1 = new JTextField();
