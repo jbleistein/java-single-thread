@@ -102,6 +102,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
     JMenuItem menuItemAdd;
     public static build_jtable bjt1;
     private JTable table;
+    private JTable table_3;
  
 
 	
@@ -137,6 +138,11 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		tabbedPane.addTab("Blast", null, panel, null);
 		panel.setLayout(null);
 		
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("DOD", null, panel_1, null);
+		panel_1.setLayout(null);
+		
 
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Tablespace", null, panel_4, null);
@@ -165,6 +171,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
 
 		
 		model_2 = new DefaultTableModel();
+		
+
+
         
 
 		
@@ -201,7 +210,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		panel_4.add(lblDatafiles);
 		
 
-		model_2.addColumn("Tablespace");
+		model_2.addColumn("Tspace");
 		model_2.addColumn("Total");
 		model_2.addColumn("Used");
 		model_2.addColumn("Free");
@@ -213,7 +222,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		
 		JScrollPane scrollPane_2 = new JScrollPane((table_2));
-		scrollPane_2.setBounds(0, 307, 232, 210);
+		scrollPane_2.setBounds(0, 307, 228, 210);
 		panel_4.add(scrollPane_2);
 		
 		table = new JTable();
@@ -223,16 +232,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
 
 		table_1 = new JTable(model);
 		table_1.setBounds(6, 22, 133, 483);
-		panel.add(table_1);
-		
-		
-	
-	 
-		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("DOD", null, panel_1, null);
-		panel_1.setLayout(null);
+		panel.add(table_1); // Add to blast tab
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
+		
 		
 
 		JPanel panel_2 = new JPanel();
