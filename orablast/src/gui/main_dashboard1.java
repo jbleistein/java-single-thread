@@ -70,15 +70,14 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	
 
 	public static JFrame frmOracleRrtDashboard;
-	private JTextField textField;
 	public static JTable table_1;
 	public static DefaultTableModel model;
 	public static DefaultTableModel model_2;
+	public static DefaultTableModel model_3;
 	JButton btnNewButton_2;
 	JButton btnNewButton;
 	JButton btnNewButton_1;
 	JButton button;
-	public static JTextArea textArea;
 	public static blast_thread bt1;
 	public static blast_thread bt2;
 	JButton btnBrowse;
@@ -102,7 +101,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
     JMenuItem menuItemAdd;
     public static build_jtable bjt1;
     private JTable table;
-    private JTable table_3;
+    private JTable dod_db_list_table;
+    private JTable dod_am_csv_file_data_table;
+    private JTable dod_gen_ddl_stmts_table;
  
 
 	
@@ -143,6 +144,38 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		tabbedPane.addTab("DOD", null, panel_1, null);
 		panel_1.setLayout(null);
 		
+		JScrollPane scrollPane_3 = new JScrollPane((Component) null);
+		scrollPane_3.setBounds(6, 6, 197, 448);
+		panel_1.add(scrollPane_3);
+		
+		dod_db_list_table = new JTable();
+		scrollPane_3.setRowHeaderView(dod_db_list_table);
+		
+		
+		
+		JLabel lblNewLabel_1 = new JLabel("Generated Oracle DDL statement:");
+		lblNewLabel_1.setBounds(229, 231, 249, 16);
+		panel_1.add(lblNewLabel_1);
+		
+		JScrollPane scrollPane_3_1_1 = new JScrollPane((Component) null);
+		scrollPane_3_1_1.setBounds(229, 259, 610, 164);
+		panel_1.add(scrollPane_3_1_1);
+		
+		dod_gen_ddl_stmts_table = new JTable();
+		scrollPane_3_1_1.setRowHeaderView(dod_gen_ddl_stmts_table);
+		
+		JButton btnNewButton_4 = new JButton("Browse");
+		btnNewButton_4.setBounds(747, 488, 117, 29);
+		panel_1.add(btnNewButton_4);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data");
+		lblNewLabel_1_1_1.setBounds(615, 463, 249, 16);
+		panel_1.add(lblNewLabel_1_1_1);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data: ");
+		lblNewLabel_1_1_1_1.setBounds(229, 16, 249, 16);
+		panel_1.add(lblNewLabel_1_1_1_1);
+		
 
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Tablespace", null, panel_4, null);
@@ -156,25 +189,15 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		btnNewButton_1 = new JButton("Clear");
 		btnNewButton_1.setBounds(630, 353, 117, 29);
 		panel.add(btnNewButton_1);
-		
-		textArea = new JTextArea();
-		textArea.setBounds(274, 22, 568, 319);
-		panel.add(textArea);
 				
 	   model = new DefaultTableModel();
        model_2 = new DefaultTableModel();
+       model_3 = new DefaultTableModel();
 		        
 		model.addColumn("Host");
         model.addColumn("DB");   
         model.addColumn("Status");
  
-
-		
-		model_2 = new DefaultTableModel();
-		
-
-
-        
 
 		
 		JSlider slider = new JSlider();
@@ -214,6 +237,25 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		model_2.addColumn("Total");
 		model_2.addColumn("Used");
 		model_2.addColumn("Free");
+		
+		
+		model_3.addColumn("Name");
+		model_3.addColumn("Account");
+		model_3.addColumn("User");
+		model_3.addColumn("UID");
+		model_3.addColumn("Ent Name");
+		model_3.addColumn("Ent Value");
+		model_3.addColumn("Action");
+		
+
+		dod_am_csv_file_data_table = new JTable(model_3);
+		//scrollPane_3_1.setRowHeaderView(dod_am_csv_file_data_table);
+		
+
+		JScrollPane scrollPane_3_1 = new JScrollPane(dod_am_csv_file_data_table);
+		scrollPane_3_1.setBounds(229, 44, 610, 164);
+		panel_1.add(scrollPane_3_1);
+		
 		
 
 		JTable table_2 = new JTable(model_2);
@@ -303,7 +345,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		btnNewButton_2.setBounds(747, 488, 117, 29);
 		panel.add(btnNewButton_2);
 		
-		JScrollPane scrollPane_1 = new JScrollPane(textArea);
+		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(274, 22, 568, 319);
 		panel.add(scrollPane_1);
 		
