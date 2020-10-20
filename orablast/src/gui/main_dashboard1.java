@@ -24,6 +24,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
@@ -64,6 +65,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.table.*;
 import javax.swing.JSlider;
+import javax.swing.JMenuBar;
 
 
 public class main_dashboard1 extends Thread implements ActionListener {
@@ -74,10 +76,10 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	public static DefaultTableModel model;
 	public static DefaultTableModel model_2;
 	public static DefaultTableModel model_3;
-	JButton btnNewButton_2;
 	JButton btnNewButton;
 	JButton btnNewButton_1;
 	JButton button;
+	public static JTextArea textArea;
 	public static blast_thread bt1;
 	public static blast_thread bt2;
 	JButton btnBrowse;
@@ -104,6 +106,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
     private JTable dod_db_list_table;
     private JTable dod_am_csv_file_data_table;
     private JTable dod_gen_ddl_stmts_table;
+  
  
 
 	
@@ -131,6 +134,45 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		    }
 		});
 		
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("File");
+		JMenu menu_2 = new JMenu("Settings");
+		JMenu menu_3 = new JMenu("Help");
+				
+		menuBar.add(menu);
+		JMenuItem menuItem = new JMenuItem("Exit");
+		menu.add(menuItem);
+		
+		menuBar.add(menu_2);
+		JMenu menu_4 = new JMenu("Blast");
+		JMenuItem menuItem_2 = new JMenuItem("Output file settings");
+		menu_2.add(menu_4);
+		menu_4.add(menuItem_2);
+	
+		JMenu menu_5 = new JMenu("DOD");
+		JMenuItem menuItem_4 = new JMenuItem("DOD setting");
+		menu_2.add(menu_5);
+		menu_5.add(menuItem_4);
+		
+
+		JMenu menu_6 = new JMenu("Tablespace");
+		JMenuItem menuItem_5 = new JMenuItem("Tablespace setting");
+		menu_2.add(menu_6);
+		menu_6.add(menuItem_5);
+		
+
+		JMenu menu_7 = new JMenu("DB Open Check");
+		JMenuItem menuItem_6 = new JMenuItem("DB Open Check setting");
+		menu_2.add(menu_7);
+		menu_7.add(menuItem_6);
+		
+		menuBar.add(menu_3);
+		JMenuItem menuItem_3 = new JMenuItem("About OraBlast");
+		menu_3.add(menuItem_3);
+		
+		
+		frmOracleRrtDashboard.setJMenuBar(menuBar);
+		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
@@ -143,13 +185,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("DOD", null, panel_1, null);
 		panel_1.setLayout(null);
-		
-		JScrollPane scrollPane_3 = new JScrollPane((Component) null);
-		scrollPane_3.setBounds(6, 6, 197, 448);
-		panel_1.add(scrollPane_3);
-		
-		dod_db_list_table = new JTable();
-		scrollPane_3.setRowHeaderView(dod_db_list_table);
 		
 		
 		
@@ -189,6 +224,10 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		btnNewButton_1 = new JButton("Clear");
 		btnNewButton_1.setBounds(630, 353, 117, 29);
 		panel.add(btnNewButton_1);
+
+		textArea = new JTextArea();
+		textArea.setBounds(274, 22, 568, 319);
+		panel.add(textArea);
 				
 	   model = new DefaultTableModel();
        model_2 = new DefaultTableModel();
@@ -247,6 +286,15 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		model_3.addColumn("Ent Value");
 		model_3.addColumn("Action");
 		
+		
+
+		dod_db_list_table = new JTable(model);
+	
+		
+		JScrollPane scrollPane_3 = new JScrollPane(dod_db_list_table);
+		scrollPane_3.setBounds(6, 6, 197, 448);
+		panel_1.add(scrollPane_3);
+		
 
 		dod_am_csv_file_data_table = new JTable(model_3);
 		//scrollPane_3_1.setRowHeaderView(dod_am_csv_file_data_table);
@@ -273,7 +321,8 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 
 		table_1 = new JTable(model);
-		table_1.setBounds(6, 22, 133, 483);
+		//table_1.setBounds(6, 22, 133, 483);
+		table_1.setBounds(6, 6, 197, 448);
 		panel.add(table_1); // Add to blast tab
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
 		
@@ -284,11 +333,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
 		
 
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("DG Gap", null, panel_3, null);
-		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
-		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
-	
 		
 
 		textField_1 = new JTextField();
@@ -337,13 +381,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
 
 		
 		JScrollPane scrollPane = new JScrollPane(table_1);
-		scrollPane.setBounds(10, -2, 197, 448);
+		//scrollPane.setBounds(10, 21, 197, 425);
+		scrollPane.setBounds(6, 6, 197, 448);
 		panel.add(scrollPane);
-		
-		
-		btnNewButton_2 = new JButton("Exit");
-		btnNewButton_2.setBounds(747, 488, 117, 29);
-		panel.add(btnNewButton_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(274, 22, 568, 319);
@@ -352,8 +392,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		button = new JButton("Clear");
 		button.setBounds(6, 494, 117, 29);
 		panel.add(button);
-		
-		btnNewButton_2.addActionListener(this);
 		btnNewButton.addActionListener(this);
 		button.addActionListener(this);
 		btnNewButton_1.addActionListener(this);
@@ -426,19 +464,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
 			
 			System.out.println("Selected item from popup window.");
 			
-		}
-		
-		if(e.getSource() == btnNewButton_2) {
-			
-			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
-			if (reply == JOptionPane.YES_OPTION) {
-			    
-				System.exit(0);
-				
-			} else {
-
-			    
-			}
 		}
 		
 		if (e.getSource() == button) {
@@ -603,5 +628,4 @@ class PopupActionListener implements ActionListener {
 		  
 		  }
 	  
-	  
-	  }
+}
