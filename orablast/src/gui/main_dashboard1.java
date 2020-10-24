@@ -155,17 +155,17 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		menu_5.add(menuItem_4);
 		
 
-		JMenu menu_6 = new JMenu("Tablespace");
+		/*JMenu menu_6 = new JMenu("Tablespace");
 		JMenuItem menuItem_5 = new JMenuItem("Tablespace setting");
 		menu_2.add(menu_6);
 		menu_6.add(menuItem_5);
-		
+		*/
 
-		JMenu menu_7 = new JMenu("DB Open Check");
+		/*JMenu menu_7 = new JMenu("DB Open Check");
 		JMenuItem menuItem_6 = new JMenuItem("DB Open Check setting");
 		menu_2.add(menu_7);
 		menu_7.add(menuItem_6);
-		
+		*/
 		menuBar.add(menu_3);
 		JMenuItem menuItem_3 = new JMenuItem("About OraBlast");
 		menu_3.add(menuItem_3);
@@ -200,11 +200,11 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		scrollPane_3_1_1.setRowHeaderView(dod_gen_ddl_stmts_table);
 		
 		JButton btnNewButton_4 = new JButton("Browse");
-		btnNewButton_4.setBounds(747, 488, 117, 29);
+		btnNewButton_4.setBounds(747, 463, 117, 29);
 		panel_1.add(btnNewButton_4);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data");
-		lblNewLabel_1_1_1.setBounds(615, 463, 249, 16);
+		lblNewLabel_1_1_1.setBounds(615, 435, 249, 16);
 		panel_1.add(lblNewLabel_1_1_1);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data: ");
@@ -212,10 +212,10 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		panel_1.add(lblNewLabel_1_1_1_1);
 		
 
-		JPanel panel_4 = new JPanel();
+		/*JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Tablespace", null, panel_4, null);
 		panel_4.setLayout(null);
-		
+		*/
 		
 		btnNewButton = new JButton("Blast");
 		btnNewButton.setBounds(747, 353, 117, 29);
@@ -239,38 +239,46 @@ public class main_dashboard1 extends Thread implements ActionListener {
  
 
 		
-		JSlider slider = new JSlider();
+		/*JSlider slider = new JSlider();
 		slider.setBounds(289, 187, 445, 29);
 		panel_4.add(slider);
+		*/
 		
-		JScrollPane scrollPane_5 = new JScrollPane((Component) null);
+        /*JScrollPane scrollPane_5 = new JScrollPane((Component) null);
 		scrollPane_5.setBounds(259, 242, 401, 126);
 		panel_4.add(scrollPane_5);
-		
-		JLabel lblNewLabel = new JLabel("Primary space:");
+		*/
+        
+		/*JLabel lblNewLabel = new JLabel("Primary space:");
 		lblNewLabel.setBounds(259, 214, 132, 16);
 		panel_4.add(lblNewLabel);
-		
+		*/
+        
+        /*
 		JScrollPane scrollPane_4 = new JScrollPane((Component) null);
 		scrollPane_4.setBounds(259, 391, 401, 126);
 		panel_4.add(scrollPane_4);
-		
-		JLabel lblStandbyFilesystems = new JLabel("Standby space:");
+		*/
+        
+		/*JLabel lblStandbyFilesystems = new JLabel("Standby space:");
 		lblStandbyFilesystems.setBounds(259, 368, 132, 16);
 		panel_4.add(lblStandbyFilesystems);
-		
-		JLabel lblDatafileSize = new JLabel("Datafile size:");
+		*/
+        
+		/*JLabel lblDatafileSize = new JLabel("Datafile size:");
 		lblDatafileSize.setBounds(215, 174, 132, 16);
 		panel_4.add(lblDatafileSize);
-		
-		JButton btnNewButton_3 = new JButton("Apply");
+		*/
+        
+		/*JButton btnNewButton_3 = new JButton("Apply");
 		btnNewButton_3.setBounds(747, 488, 117, 29);
 		panel_4.add(btnNewButton_3);
-		
-		JLabel lblDatafiles = new JLabel("Datafiles:");
+		*/
+        
+		/*JLabel lblDatafiles = new JLabel("Datafiles:");
 		lblDatafiles.setBounds(215, 6, 132, 16);
 		panel_4.add(lblDatafiles);
-		
+		*/
 
 		model_2.addColumn("Tspace");
 		model_2.addColumn("Total");
@@ -306,7 +314,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		
 
-		JTable table_2 = new JTable(model_2);
+		/*JTable table_2 = new JTable(model_2);
 		table_2.setBounds(6, 22, 133, 483);
 		panel_4.add(table_2);
 		
@@ -318,7 +326,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		table = new JTable();
 		table.setBounds(42, 240, 24, -25);
 		panel_4.add(table);	
-		
+		*/
 
 		table_1 = new JTable(model);
 		//table_1.setBounds(6, 22, 133, 483);
@@ -328,15 +336,15 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		
 
-		JPanel panel_2 = new JPanel();
+		/*JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("DB Open check", null, panel_2, null);
 		frmOracleRrtDashboard.getContentPane().add(tabbedPane);
-		
+		*/
 
 		
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(20, 458, 130, 26);
+		textField_1.setBounds(16, 465, 145, 29);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 
@@ -390,7 +398,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		panel.add(scrollPane_1);
 		
 		button = new JButton("Clear");
-		button.setBounds(6, 494, 117, 29);
+		button.setBounds(173, 466, 117, 29);
 		panel.add(button);
 		btnNewButton.addActionListener(this);
 		button.addActionListener(this);
