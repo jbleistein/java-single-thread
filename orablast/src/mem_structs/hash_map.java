@@ -37,4 +37,9 @@ public class hash_map {
 		
 	}
 
+	public String get_pdb_ind_hm2(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

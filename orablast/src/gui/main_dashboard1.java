@@ -199,12 +199,12 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		dod_gen_ddl_stmts_table = new JTable();
 		scrollPane_3_1_1.setRowHeaderView(dod_gen_ddl_stmts_table);
 		
-		JButton btnNewButton_4 = new JButton("Browse");
-		btnNewButton_4.setBounds(747, 463, 117, 29);
-		panel_1.add(btnNewButton_4);
+		JButton dod_browse_button = new JButton("Browse");
+		dod_browse_button.setBounds(220, 453, 117, 29);
+		panel_1.add(dod_browse_button);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data");
-		lblNewLabel_1_1_1.setBounds(615, 435, 249, 16);
+		lblNewLabel_1_1_1.setBounds(229, 435, 249, 16);
 		panel_1.add(lblNewLabel_1_1_1);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data: ");
@@ -311,6 +311,10 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		JScrollPane scrollPane_3_1 = new JScrollPane(dod_am_csv_file_data_table);
 		scrollPane_3_1.setBounds(229, 44, 610, 164);
 		panel_1.add(scrollPane_3_1);
+		
+		JButton dod_blast_button = new JButton("Blast");
+		dod_blast_button.setBounds(747, 453, 117, 29);
+		panel_1.add(dod_blast_button);
 		
 		
 
@@ -606,34 +610,38 @@ public class main_dashboard1 extends Thread implements ActionListener {
 				  }
 	
 	
-			} 
-		}
+	}
+}
+
+
 
 class PopupActionListener implements ActionListener {
 	  public void actionPerformed(ActionEvent actionEvent) {
 		  
-		  System.out.println("Selected row: " +main_dashboard1.table_1.getSelectedRow());
 		  
-		   System.out.println("Selected: " + actionEvent.getActionCommand());
-		  
-		  
-		  
-	String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());
-	String file_name = ".."+File.separator+"output"+File.separator+"orablast_"+main_dashboard1.table_1.getValueAt(main_dashboard1.table_1.getSelectedRow(), 1)+"_"+file_ts+".out";
-    
-	//String file_name = "/users/jbleistein/desktop/orablast/output/orablast_"+main_dashboard1.table_1.getValueAt(main_dashboard1.table_1.getSelectedRow(), 1)+"_"+file_ts+".out";
-					
-		  File f = new File(file_name);
 			
 		  try {
-			Desktop.getDesktop().edit(f);
-		} catch (IOException e) {
+			  
+			  for (int i = 0; i < main_dashboard1.array.length; i ++) {
+			  
+			  String db=blast_thread.hm2.get_pdb_ind_hm(main_dashboard1.array[i]);
+			  
+			  	System.out.println(db);
+			  	
+			  }
+			  
+			  
+			//Desktop.getDesktop().edit();
+			  
+		} catch (Exception e) {
+			
+			System.out.println("test");
 			
 			e.printStackTrace();
-		}
-		  
-		  
+		
 		  
 		  }
-	  
+	 
+		  System.out.println("Do I print out?");
+	  }
 }

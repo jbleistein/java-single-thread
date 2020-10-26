@@ -35,6 +35,7 @@ import db_access.db_connect;
 import dnl.utils.text.table.TextTable;
 import gui.main_dashboard1;
 import mem_structs.hash_map;
+import mem_structs.hash_map2;
 
 public class blast_thread extends Thread {
 	
@@ -48,7 +49,7 @@ public class blast_thread extends Thread {
 	 String[] stmts;
 	 ResultSetMetaData rsmd;
 	 boolean rs2;
-	 public volatile static File fname;
+	 public  static File fname;
 	 
 	 int r;
 	 int db_ind;
@@ -62,6 +63,7 @@ public class blast_thread extends Thread {
      PrintStream stream;
 	File src_dir;
 	File dest_dir;
+	public static hash_map2 hm2;
 
 
 	public blast_thread(String[] myArray) {
@@ -142,12 +144,23 @@ public class blast_thread extends Thread {
 							
 							table_1.setValueAt("ERROR", db_ind , 2);	
 							
-						String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());
-						fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
-					    stream = new PrintStream(new FileOutputStream(fname, true));
-				        System.setOut(stream);
-				        System.out.println(e.getMessage());
-					    stream.close();
+
+							String file_ts = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+							fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
+							
+							
+					        try {
+								stream = new PrintStream(new FileOutputStream(fname, true));
+							} catch (FileNotFoundException e2) {
+
+								e2.printStackTrace();
+							}
+					        
+					      
+							
+					        System.setOut(stream);
+					        System.out.println(e.getMessage());
+						    stream.close();
 
 			        	 any_thread_errors=1;
 			        	 
@@ -229,12 +242,18 @@ public class blast_thread extends Thread {
 								}
 								
 							//}
-					
 
-							String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());
+							String file_ts = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 							
 							
 							fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
+							
+							String array=myArray[i].toString();
+							String file_name=fname.toString();
+							
+
+						    hm2 = new hash_map2();
+						    hm2.create_pdb_ind_hm(array, file_name);
 							
 							
 					        stream = new PrintStream(new FileOutputStream(fname, true));
@@ -244,7 +263,10 @@ public class blast_thread extends Thread {
 							
 							tt.printTable();
 		
-							stream.close();
+						
+						
+						
+							
 							
 					        }
 						
@@ -263,15 +285,20 @@ public class blast_thread extends Thread {
 					
 					table_1.setValueAt("ERROR", db_ind , 2);	
 					
-					String file_ts = new SimpleDateFormat("yyyyMMdd").format(new Date());
+
+					String file_ts = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+					
 					fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
 					
-						try {
-							stream = new PrintStream(new FileOutputStream(fname, true));
-						} catch (FileNotFoundException e1) {
-		
-							e1.printStackTrace();
-						}
+					
+			        try {
+						stream = new PrintStream(new FileOutputStream(fname, true));
+					} catch (FileNotFoundException e2) {
+
+						e2.printStackTrace();
+					}
+			        
+			      
 					
 			        System.setOut(stream);
 			        System.out.println(e.getMessage());
