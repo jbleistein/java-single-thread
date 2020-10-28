@@ -5,6 +5,8 @@ import java.awt.FileDialog;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.AreaAveragingScaleFilter;
 import java.beans.PropertyVetoException;
 import java.io.File;
@@ -106,7 +108,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
     private JTable dod_db_list_table;
     private JTable dod_am_csv_file_data_table;
     private JTable dod_gen_ddl_stmts_table;
-  
+
  
 
 	
@@ -442,18 +444,28 @@ public class main_dashboard1 extends Thread implements ActionListener {
 			});		 	        
 
 	        JPopupMenu popupMenu = new JPopupMenu();
-		    JMenuItem menuItemAdd = new JMenuItem("View output");
+	        menuItemAdd = new JMenuItem("View output");
 		    table_1.setComponentPopupMenu(popupMenu);
+		    
+		    popupMenu.add(menuItemAdd);
+	        menuItemAdd.setEnabled(true);
+	        menuItemAdd.addActionListener(this);
+	        
+	       /* menuItemAdd.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                    System.out.println("CLICKED");
+	            }
+	        });*/
+	 
+
 		    
 		    btnBrowse = new JButton("Browse");
 		    btnBrowse.setBounds(513, 353, 117, 29);
 		    panel.add(btnBrowse);
 		    
-		    ActionListener actionListener = new PopupActionListener();
+		   // ActionListener actionListener = new PopupActionListener();
 	    
-	        popupMenu.add(menuItemAdd);
-	        menuItemAdd.addActionListener(actionListener);
-	        menuItemAdd.setEnabled(true);
+	        
 	        
 	        btnBrowse.addActionListener(this);
 	       
@@ -461,8 +473,25 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
+	
 		
+		if (e.getSource() == menuItemAdd) { //View output popup menu item
+			
 
+				String file_name = blast_thread.hm2.get_pdb_ind_hm(table_1.getValueAt(table_1.getSelectedRow(), 1).toString());	
+			
+				  File f = new File(file_name);
+					
+				  try {
+					Desktop.getDesktop().edit(f);
+				} catch (IOException a) {
+					
+					System.out.println("CLICKED AND ABENDED");
+					a.printStackTrace();
+				}
+			
+		}
+		
 		if(e.getSource() == btnBrowse) {
 			
 			JFileChooser fileChooser = new JFileChooser();
@@ -470,13 +499,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		    fileChooser.showOpenDialog(null);
 		    
 		}
-		   
 		
-		if(e.getSource() == popupMenu) {
-			
-			System.out.println("Selected item from popup window.");
-			
-		}
 		
 		if (e.getSource() == button) {
 			
@@ -579,6 +602,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 				      
 					   //Start DB worker threads.   
 						  
+						  
 					      bt1 = new blast_thread(array);
 					      bt1.start();
 					
@@ -608,40 +632,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
 				    
 					  }
 				  }
-	
+	}
 	
 	}
-}
-
-
-
-class PopupActionListener implements ActionListener {
-	  public void actionPerformed(ActionEvent actionEvent) {
-		  
-		  
-			
-		  try {
-			  
-			  for (int i = 0; i < main_dashboard1.array.length; i ++) {
-			  
-			  String db=blast_thread.hm2.get_pdb_ind_hm(main_dashboard1.array[i]);
-			  
-			  	System.out.println(db);
-			  	
-			  }
-			  
-			  
-			//Desktop.getDesktop().edit();
-			  
-		} catch (Exception e) {
-			
-			System.out.println("test");
-			
-			e.printStackTrace();
-		
-		  
-		  }
-	 
-		  System.out.println("Do I print out?");
-	  }
-}

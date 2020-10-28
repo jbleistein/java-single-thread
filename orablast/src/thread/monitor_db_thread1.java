@@ -13,7 +13,7 @@ public class monitor_db_thread1 extends Thread {
 	
 	public void run() {
 		
-		/* May have to change logic check from isalive method to a state other than RUNNABLE test with the getstate method if 
+		/* May have to change logic check from isalive method to a state other than RUNNABLE test with the get state method if 
 		the current isalive logic starts to fail again. It appears to be working - 08/16/20
 		
 		*/

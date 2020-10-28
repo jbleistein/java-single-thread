@@ -1,8 +1,10 @@
 package thread;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -72,16 +74,18 @@ public class blast_thread extends Thread {
 	}
 		
 		public void run() {
-		
+
+			hm2 = new hash_map2(); // Only instantiate this object once, outside the class wide for loop.
 		
 		 	for (i=0; i < myArray.length; i++) {
-		 		
+
 		 		
 		        try {
       
 		            		            
 		            Statement stmt = base_db_connection.createStatement();
 					String sql = "select * from dbs where dbname = '" +myArray[i] +"'";
+					
 					
 
 					ResultSet rs = stmt.executeQuery(sql);
@@ -160,7 +164,12 @@ public class blast_thread extends Thread {
 							
 					        System.setOut(stream);
 					        System.out.println(e.getMessage());
-						    stream.close();
+						 
+							
+							PrintStream consoleStream = new PrintStream(
+                                    new FileOutputStream(FileDescriptor.out));
+        
+							System.setOut(consoleStream);
 
 			        	 any_thread_errors=1;
 			        	 
@@ -180,7 +189,7 @@ public class blast_thread extends Thread {
 				 	  
 				 	  int numberOfColumns = metadata.getColumnCount();
 					 	
-					 	     if(!rs3.next()) {
+					  if(!rs3.next()) {
 					 				
 					 				return;
 					 			}
@@ -223,60 +232,39 @@ public class blast_thread extends Thread {
 							tt.setSort(0); 
 							
 							
-							//Move any existing output files from output/ to archive/.
-							
-							 src_dir = new File(".."+File.separator+"output"+File.separator);
-							 dest_dir = new File(".."+File.separator+"archive"+File.separator);
-							
-							
-							//if (src_dir.length() > 0) {
-								
-								
-								File[] content = src_dir.listFiles();
-							
-								for (int i = 0; i < content.length;i++) {
-									
-									content[i].renameTo(dest_dir);
-									
-									
-								}
-								
-							//}
-
 							String file_ts = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 							
 							
 							fname = new File(".."+File.separator+"output"+File.separator+"orablast_"+myArray[i]+"_"+file_ts+".out");
 							
-							String array=myArray[i].toString();
 							String file_name=fname.toString();
+							String db=myArray[i].toString();
 							
 
-						    hm2 = new hash_map2();
-						    hm2.create_pdb_ind_hm(array, file_name);
-							
-							
+						    hm2.create_pdb_ind_hm(db, file_name);
+						    
+						 
 					        stream = new PrintStream(new FileOutputStream(fname, true));
 					        
 					        
 					        System.setOut(stream);
 							
 							tt.printTable();
-		
-						
-						
-						
+							
+							PrintStream consoleStream = new PrintStream(
+                                    new FileOutputStream(FileDescriptor.out));
+        
+							System.setOut(consoleStream);
 							
 							
-					        }
+						
+					          }
 						
 						
 					
 							}
 				 	
-			         
 					}
-
 				
 					} catch (Exception e) { 
 					 
@@ -302,21 +290,33 @@ public class blast_thread extends Thread {
 					
 			        System.setOut(stream);
 			        System.out.println(e.getMessage());
-				    stream.close();
+				    
+					
+					PrintStream consoleStream = new PrintStream(
+                            new FileOutputStream(FileDescriptor.out));
+
+					System.setOut(consoleStream);
+				   
 
 	        	    any_thread_errors=1;
 
-					    }
-				 	
-			        }
-		       
-			    } 
-	
+					}
+		                
+		 	            } 
+		
+			
+		
+			
+		}
+		  
+
 
 	public int get_error_count() {
 		
 		return any_thread_errors;
 		
-	    }
+	    } 
+	
+
 		 	
-	}
+	} 
