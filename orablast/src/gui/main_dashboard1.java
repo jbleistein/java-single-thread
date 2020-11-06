@@ -48,7 +48,7 @@ import javax.swing.table.DefaultTableModel;
 
 import db_access.create_db_connections;
 import db_access.db_connect;
-import mem_structs.dbname_hash_map;
+//import mem_structs.dbname_hash_map;
 import mem_structs.hash_map;
 import thread.blast_thread;
 import thread.build_jtable;
@@ -468,9 +468,26 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	        
 	        
 	        btnBrowse.addActionListener(this);
-	       
-	}
+	        
+	        
+	       //Move old output files, if they exist, from the output directory to the archive directory
+	       //Note on MacOS the .DS_Store file is a hidden file created in all dirs. Be aware of this.
+	        
+	        File output_dir = new File("../output/");
+	        
+	        	String[] files_in_output_dir = output_dir.list();
+	        	
+	        	if (files_in_output_dir.length > 0) {
+	        		
+	        		System.out.println("There are files in the output dir");
+	        		
+	        	} else {
+	        			
+	        				System.out.println("There are no files in the output dir");
+	        			
+     		}
 	
+	}
 	
 	public void actionPerformed(ActionEvent e) {
 	

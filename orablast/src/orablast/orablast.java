@@ -19,7 +19,7 @@ import gui.main_dashboard1;
 import test.test;
 
 /*OraBlast - Version 1.0
- * OraBlast is a JAVA application used to connect to multiple Oracle databases in the environment to run a SQL statement of some sort.
+ * OraBlast is a JAVA application used to connect to multiple Oracle databases in the environment to run a SQL statement of some sort and other RRT DBA tasks.
  * The SQL statement could be a DML, DDL, etc. This program uses the JDBC driver and the JAVA Swing library for it's GUI components.
  * This program pushes statements to the database using multiple threads for performance. This program was developed and tested to
  * run on Microsoft Windows workstations but can run on any platform where the JAVA JVM is available.
@@ -31,8 +31,8 @@ import test.test;
  * Application return code legend:
  * 
  * 1 - Config file not found in default location
- * 2 - Invalid username or password for Oracle authentication and schema database.
- * 3 - User account locked for Oracle authentication in schema database.
+ * 2 - Invalid username or password for Oracle authentication in app config Oracle database.
+ * 3 - User account locked in app config Oracle database.
  * 
  * 
  */
