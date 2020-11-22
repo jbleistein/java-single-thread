@@ -85,7 +85,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	public static blast_thread bt1;
 	public static blast_thread bt2;
 	JButton btnBrowse;
-	
+	File files_in_output_dir[];
 
 	String DB_SERVER="192.168.240.134";
 	String DB_SERVER_PORT="1521";
@@ -470,16 +470,27 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	        btnBrowse.addActionListener(this);
 	        
 	        
-	       //Move old output files, if they exist, from the output directory to the archive directory
-	       //Note on MacOS the .DS_Store file is a hidden file created in all dirs. Be aware of this.
+	       //Move old output files, if they exist, from the output directory to the archive directory when the app starts.
+	       //Note on MacOS the .DS_Store file is a hidden file created in all directories. Be aware of this.
 	        
-	        File output_dir = new File("../output/");
+	        File output_dir = new File("../output/"); //Need to come back and change this object to point to the cfg file property or the env var if set. - 11/07/2020
 	        
-	        	String[] files_in_output_dir = output_dir.list();
+	        files_in_output_dir = output_dir.listFiles();
 	        	
 	        	if (files_in_output_dir.length > 0) {
 	        		
 	        		System.out.println("There are files in the output dir");
+	        		
+	        		for (int i=0; i < files_in_output_dir.length;i++) {
+	        			
+	        			files_in_output_dir[i].renameTo(new File("../archive/"+files_in_output_dir[i].getName()));
+	        			
+	        			//Debug for the file move action.
+	        			//System.out.println("Moved file: " +files_in_output_dir[i]+ " to: ../archive/" +files_in_output_dir[i].getName());
+	        			
+	        		}
+	        		
+	        
 	        		
 	        	} else {
 	        			
