@@ -105,7 +105,6 @@ public class main_dashboard1 extends Thread implements ActionListener {
     JMenuItem menuItemAdd;
     public static build_jtable bjt1;
     private JTable table;
-    private JTable dod_db_list_table;
     private JTable dod_am_csv_file_data_table;
     private JTable dod_gen_ddl_stmts_table;
 
@@ -191,26 +190,26 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("Generated Oracle DDL statement:");
-		lblNewLabel_1.setBounds(229, 231, 249, 16);
+		lblNewLabel_1.setBounds(32, 231, 249, 16);
 		panel_1.add(lblNewLabel_1);
 		
 		JScrollPane scrollPane_3_1_1 = new JScrollPane((Component) null);
-		scrollPane_3_1_1.setBounds(229, 259, 610, 164);
+		scrollPane_3_1_1.setBounds(32, 259, 807, 164);
 		panel_1.add(scrollPane_3_1_1);
 		
 		dod_gen_ddl_stmts_table = new JTable();
 		scrollPane_3_1_1.setRowHeaderView(dod_gen_ddl_stmts_table);
 		
 		JButton dod_browse_button = new JButton("Browse");
-		dod_browse_button.setBounds(220, 453, 117, 29);
+		dod_browse_button.setBounds(32, 466, 117, 29);
 		panel_1.add(dod_browse_button);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data");
-		lblNewLabel_1_1_1.setBounds(229, 435, 249, 16);
+		lblNewLabel_1_1_1.setBounds(42, 441, 249, 16);
 		panel_1.add(lblNewLabel_1_1_1);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("CSV/Excel Acccess Manager file data: ");
-		lblNewLabel_1_1_1_1.setBounds(229, 16, 249, 16);
+		lblNewLabel_1_1_1_1.setBounds(32, 16, 249, 16);
 		panel_1.add(lblNewLabel_1_1_1_1);
 		
 
@@ -296,26 +295,17 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		model_3.addColumn("Ent Value");
 		model_3.addColumn("Action");
 		
-		
-
-		dod_db_list_table = new JTable(model);
-	
-		
-		JScrollPane scrollPane_3 = new JScrollPane(dod_db_list_table);
-		scrollPane_3.setBounds(6, 6, 197, 448);
-		panel_1.add(scrollPane_3);
-		
 
 		dod_am_csv_file_data_table = new JTable(model_3);
 		//scrollPane_3_1.setRowHeaderView(dod_am_csv_file_data_table);
 		
 
 		JScrollPane scrollPane_3_1 = new JScrollPane(dod_am_csv_file_data_table);
-		scrollPane_3_1.setBounds(229, 44, 610, 164);
+		scrollPane_3_1.setBounds(32, 44, 807, 164);
 		panel_1.add(scrollPane_3_1);
 		
 		JButton dod_blast_button = new JButton("Blast");
-		dod_blast_button.setBounds(747, 453, 117, 29);
+		dod_blast_button.setBounds(747, 466, 117, 29);
 		panel_1.add(dod_blast_button);
 		
 		
