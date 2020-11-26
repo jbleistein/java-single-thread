@@ -107,7 +107,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
     private JTable table;
     private JTable dod_am_csv_file_data_table;
     private JTable dod_gen_ddl_stmts_table;
-
+    JMenuItem menuItem_2;
  
 
 	
@@ -146,9 +146,12 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		menuBar.add(menu_2);
 		JMenu menu_4 = new JMenu("Blast");
-		JMenuItem menuItem_2 = new JMenuItem("Output file settings");
+		menuItem_2 = new JMenuItem("Output file settings");
 		menu_2.add(menu_4);
 		menu_4.add(menuItem_2);
+		
+		menuItem_2.addActionListener(this);
+		
 	
 		JMenu menu_5 = new JMenu("DOD");
 		JMenuItem menuItem_4 = new JMenuItem("DOD setting");
@@ -540,6 +543,23 @@ public class main_dashboard1 extends Thread implements ActionListener {
 			
 		
 		}
+		
+		
+		if (e.getSource() == menuItem_2) { //Output file settings
+			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						output_file_settings_gui window = new output_file_settings_gui();
+						window.frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+	
+		}
+		
 			
 			if (e.getSource() == btnNewButton) {
 				//blast
