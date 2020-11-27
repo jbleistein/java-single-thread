@@ -86,6 +86,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	public static blast_thread bt2;
 	JButton btnBrowse;
 	File files_in_output_dir[];
+	JMenuItem menuItem;
 
 	String DB_SERVER="192.168.240.134";
 	String DB_SERVER_PORT="1521";
@@ -108,6 +109,8 @@ public class main_dashboard1 extends Thread implements ActionListener {
     private JTable dod_am_csv_file_data_table;
     private JTable dod_gen_ddl_stmts_table;
     JMenuItem menuItem_2;
+    JButton exit_btn;
+    JButton dod_exit_btn;
  
 
 	
@@ -127,7 +130,7 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 		        
 		    	int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
-				if (reply == JOptionPane.YES_OPTION) {
+				if (reply == JOptionPane.YES_OPTION) { 
 				    
 					System.exit(0);
 				}
@@ -141,8 +144,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		JMenu menu_3 = new JMenu("Help");
 				
 		menuBar.add(menu);
-		JMenuItem menuItem = new JMenuItem("Exit");
+		menuItem = new JMenuItem("Exit");
 		menu.add(menuItem);
+		menuItem.addActionListener(this);
 		
 		menuBar.add(menu_2);
 		JMenu menu_4 = new JMenu("Blast");
@@ -308,8 +312,22 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		panel_1.add(scrollPane_3_1);
 		
 		JButton dod_blast_button = new JButton("Blast");
-		dod_blast_button.setBounds(747, 466, 117, 29);
+		dod_blast_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		dod_blast_button.setBounds(624, 466, 117, 29);
 		panel_1.add(dod_blast_button);
+		
+		dod_exit_btn = new JButton("Exit");
+		dod_exit_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		dod_exit_btn.setBounds(747, 466, 117, 29);
+		panel_1.add(dod_exit_btn);
+		dod_exit_btn.addActionListener(this);
 		
 		
 
@@ -456,6 +474,12 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		    btnBrowse.setBounds(513, 353, 117, 29);
 		    panel.add(btnBrowse);
 		    
+		    exit_btn = new JButton("Exit");
+		    exit_btn.setBounds(747, 466, 117, 29);
+		    panel.add(exit_btn);
+		    
+		    exit_btn.addActionListener(this);
+		    
 		   // ActionListener actionListener = new PopupActionListener();
 	    
 	        
@@ -494,6 +518,17 @@ public class main_dashboard1 extends Thread implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		
+		
+		if(e.getSource() == exit_btn || e.getSource() == menuItem || e.getSource() == dod_exit_btn) {
+			
+			int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirm", JOptionPane.YES_NO_OPTION);
+			if (reply == JOptionPane.YES_OPTION) {
+			    
+				System.exit(0);
+			}
+			
+		}
 	
 		
 		if (e.getSource() == menuItemAdd) { //View output popup menu item
@@ -671,5 +706,4 @@ public class main_dashboard1 extends Thread implements ActionListener {
 					  }
 				  }
 	}
-	
 	}
