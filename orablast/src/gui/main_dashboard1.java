@@ -582,16 +582,9 @@ public class main_dashboard1 extends Thread implements ActionListener {
 		
 		if (e.getSource() == menuItem_2) { //Output file settings
 			
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
+			
 						output_file_settings_gui window = new output_file_settings_gui();
-						window.frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+						
 	
 		}
 		
